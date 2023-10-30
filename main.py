@@ -46,3 +46,4 @@ def generate_purchasing_plan_file(stock_data_input_file, plan_data_input_file, o
 
 
 generate_purchasing_plan_file('skl.txt', 'plan.txt', 'purchase_plan.txt')
+print("Файл плана закупок успешно обновлен.")
