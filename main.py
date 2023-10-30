@@ -16,5 +16,13 @@ for item in stock_data:
     else:
         stock[detail] = int(quantity)
 
-print(stock_data)
-print(stock)
+
+expenditure_plan_data = read_file('plan.txt')
+
+expenditure_plan = []
+
+for item in expenditure_plan_data:
+    date, detail, quantity = item
+    expenditure_plan.append(item)
+
+print(expenditure_plan)
