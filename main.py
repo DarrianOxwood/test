@@ -41,6 +41,8 @@ for item in plan_data:
 print(stock)
 print(purchasing_plan)
 
-for item in purchasing_plan:
-    quarter, year, detail, quarter_quantity = item
-    print(f'{quarter}.{year} {detail} {quarter_quantity}')
+with open('potreb.txt', 'w') as file:
+    for item in purchasing_plan:
+        quarter, year, detail, quarter_quantity = item
+        file.write(f'{quarter}.{year} {detail} {quarter_quantity}\n')
+
