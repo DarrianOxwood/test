@@ -1,4 +1,6 @@
 import math
+
+
 def read_file(filename):
     with open(filename, 'r', encoding='utf-8') as file:
         lines = file.readlines()
@@ -16,7 +18,6 @@ for item in stock_data:
         stock[detail] += int(quantity)
     else:
         stock[detail] = int(quantity)
-
 
 plan_data = read_file('plan.txt')
 
@@ -39,3 +40,7 @@ for item in plan_data:
 
 print(stock)
 print(purchasing_plan)
+
+for item in purchasing_plan:
+    quarter, year, detail, quarter_quantity = item
+    print(f'{quarter}.{year} {detail} {quarter_quantity}')
