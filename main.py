@@ -1,5 +1,7 @@
 import math
 
+quarters = {1: 'I', 2: 'II', 3: 'III', 4: 'IV'}
+
 
 def read_file(filename):
     with open(filename, 'r', encoding='utf-8') as file:
@@ -40,7 +42,7 @@ def generate_purchasing_plan_file(stock_data_input_file, plan_data_input_file, o
     with open(output_plan_file, 'w') as file:
         for item in purchasing_plan:
             quarter, year, detail, quarter_quantity = item
-            file.write(f'{quarter}.{year} {detail} {quarter_quantity}\n')
+            file.write(f'{quarters[quarter]}.{year} {detail} {quarter_quantity}\n')
 
 
 generate_purchasing_plan_file('skl.txt', 'plan.txt', 'purchase_plan.txt')
