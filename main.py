@@ -37,7 +37,7 @@ def plan_summ_for_quarter_year(purchase_list):
     for item in purchasing_plan_dictionary:
         quarter, year, detail = re.split("[. ]+", item)
         purchasing_plan.append([quarter, year, detail, purchasing_plan_dictionary[item]])
-
+    print(purchasing_plan)
     return purchasing_plan
 
 
@@ -52,7 +52,7 @@ def stock_summ(stock_items):
             stock[detail] += int(quantity)
         else:
             stock[detail] = int(quantity)
-
+    print(stock)
     return stock
 
 
@@ -67,6 +67,8 @@ def generate_purchasing_plan_file(stock_data_input_file, plan_data_input_file, o
 
     for item in usage_plan:
         quarter, year, detail, quantity = item
+        if detail not in stock.keys():
+            stock[detail] = 0
         stock_quantity = stock.get(detail, 0)
         deficit = quantity - stock_quantity
         if deficit > 0:
@@ -77,13 +79,11 @@ def generate_purchasing_plan_file(stock_data_input_file, plan_data_input_file, o
                 int(year) - 1 if int(quarter) - 1 == 0 else int(year),
                 detail,
                 quarter_quantity])
-
-        print(purchasing_plan)
-
-        with open(output_file, 'w') as file:
-            for purchasing_plan_item in purchasing_plan:
-                quarter, year, detail, quarter_quantity = purchasing_plan_item
-                file.write(f'{quarters[quarter]}.{year} {detail} {quarter_quantity}\n')
+    print(stock)
+    with open(output_file, 'w') as file:
+        for purchasing_plan_item in purchasing_plan:
+            quarter, year, detail, quarter_quantity = purchasing_plan_item
+            file.write(f'{quarters[quarter]}.{year} {detail} {quarter_quantity}\n')
 
 
 stock_from_file = 'skl.txt'
