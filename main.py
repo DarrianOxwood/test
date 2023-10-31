@@ -15,7 +15,7 @@ def plan_summ_for_quarter_year(purchase_list):
     # приводит список вида ['дд.мм.гггг', 'номер_детали', 'количество']
     # к списку вида ['квартал.год', 'деталь', количество]
     # и суммирует количество всех деталей
-    # по кварталу году и номреу детали
+    # по кварталу году и номеру детали
 
     purchasing_plan_dictionary = {}
 
@@ -38,6 +38,7 @@ def plan_summ_for_quarter_year(purchase_list):
         quarter, year, detail = re.split("[. ]+", item)
         purchasing_plan.append([quarter, year, detail, purchasing_plan_dictionary[item]])
     print(purchasing_plan)
+
     return purchasing_plan
 
 
@@ -79,6 +80,9 @@ def generate_purchasing_plan_file(stock_data_input_file, plan_data_input_file, o
                 int(year) - 1 if int(quarter) - 1 == 0 else int(year),
                 detail,
                 quarter_quantity])
+        else:
+            stock[detail] = -deficit
+
     print(stock)
     with open(output_file, 'w') as file:
         for purchasing_plan_item in purchasing_plan:
@@ -90,11 +94,3 @@ stock_from_file = 'skl.txt'
 plan_from_file = 'plan.txt'
 plan_file = 'purchase_plan.txt'
 generate_purchasing_plan_file(stock_from_file, plan_from_file, plan_file)
-
-
-
-
-
-'''generate_purchasing_plan_file('skl.txt', 'plan.txt', 'purchase_plan.txt')
-print("Файл плана закупок успешно обновлен.")
-'''
